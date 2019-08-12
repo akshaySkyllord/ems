@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load poll_extras %}
+{% block content %}
+<h3>List of {{title}} :</h3>
+<div class="row">
+<div class="col-sm-8">
+    <div class="text-right">
+        {% if request.role == 'Admin' %}
+        <a class="btn btn-outline-success my-2 my-sm-0"  href="/employee/add/">Add employee</a>
+        {% endif %}
+    </div>
+    {% if users %}
+
+    {% for user in users %}
+
+    <table class="table">
+        <tr>
+
+            <td>{{user.first_name}}&nbsp{{user.last_name  }}</td>
+            <td><a href="/employee/details/{{user.id}}">Details</a></td>
+            <td><a href="/employee/edit/{{user.id}}">Edit</a></td>
+            <td><a href="/employee/delete/{{user.id}}">Delete</a></td>
+
+        </tr>
+    </table>
+
+    {% endfor %}
+
+
+    {% else %}
+    <p>there is no question available</p>
+    {% endif %}
+</div>
+<div class="col-sm-4">
+    {% recent_poll as questions %}
+
+    <h2>Recent Polls</h2>
+{% if questions %}
+<ul>
+    {% for questions in questions %}
+    <li>
+        <a href="{% url 'poll_details' questions.id %}">{{questions.title}}</a>
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>There is no questions</p>
+
+{% endif %}
+
+</div>
+</div>
+{% endblock content %}

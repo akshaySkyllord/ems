@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h3 style="color:blue">Employee Details</h3>
+<div class="col-md-6">
+    <table class="table">
+
+        <tr><td><b>First Name</b> :{{user.first_name  }}</td></tr>
+        <tr><td><b>Last Name</b> :{{user.last_name}}</td></tr>
+        <tr><td><b>Email :</b>{{user.email}}</td></tr>
+        <tr><td><b>Salary :</b>{{user.salary}}</td></tr>
+        <tr><td><b>Designation :</b>{{user.designation}}</td></tr>
+        <tr><td><a href="/employee/edit/{{user.id}}">Edit</a>
+            <a href="/employee/delete/{{user.id}}">Delete</a><td></tr>
+    </table>
+</div>
+
+{% endblock content %}
